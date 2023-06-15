@@ -1,6 +1,6 @@
 function NavBar(){
     const ctx = React.useContext(UserContext); 
-    const [logged, setLogged]     = React.useState('');
+    const [currUser, setCurrUser]     = React.useState('');
     const [show, setShow]         = React.useState(true);
     const [status, setStatus]     = React.useState(null);
 
@@ -24,7 +24,7 @@ function NavBar(){
     function testAuth() {
       if (ctx.auth) {
         console.log('Logged in!');
-        setLogged(ctx.email);
+        setCurrUser(ctx.email);
         ctx.user = ctx.email;
         setShow(false);
       } else {
@@ -35,8 +35,8 @@ function NavBar(){
 
     return(
       <>
-      <nav className="navbar navbar-expand-md navbar-light bg-light">
-        <a className="navbar-brand" href="#">Bad Bank</a>
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a className="navbar-brand" href="#">Ultramar Bank</a>
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -44,6 +44,9 @@ function NavBar(){
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
               <a className="nav-link" href="#/CreateAccount/">Create Account</a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="#/login/">Login</a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="#/deposit/">Deposit</a>
@@ -58,9 +61,8 @@ function NavBar(){
               <a className="nav-link" href="#/alldata/">AllData</a>
             </li>          
           </ul>
-          {/* display the logged in user */}
           <span className="navbar-text">
-            {logged}
+            {currUser}
           </span>
         </div>
       </nav>
@@ -79,7 +81,7 @@ function NavBar(){
             {<button type="submit" className="btn btn-light" onClick={login}>Login</button>}
             </>
             : 
-            <LoggedIn setShow={setShow} setLogged={setLogged}/>}
+            <LoggedIn setShow={setShow} setCurrUser={setCurrUser}/>}
             </>
           </span>
         </div>
@@ -103,7 +105,7 @@ function LoggedIn(props) {
       <h5>You are logged in!</h5><br/>
       <button type="submit" 
           className="btn btn-light" 
-          onClick={() => {props.setShow(true); props.setLogged(''); ctx.auth=false; ctx.email=''; ctx.password=''; ctx.user='';}}>Logout</button>
+          onClick={() => {props.setShow(true); props.setCurrUser(''); ctx.auth=false; ctx.email=''; ctx.password=''; ctx.user='';}}>Logout</button>
       </>
   )
 }

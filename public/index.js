@@ -5,13 +5,14 @@ function Spa() {
         <div>
 
             {/*add our shared context*/}
-            <UserContext.Provider value={{user:'',auth:false,name:'',email:'',password:'',balance:'0'}}>
+            <UserContext.Provider value={{user:'', auth:false, name:'', email:'', password:'', balance:'0'}}>
             {/*get our navbar from navbar.js*/}
             <NavBar/> 
 
             <div className="container" style={{padding: "20px"}}>
                 <Route path="/" exact component={Home} />
                 <Route path="/CreateAccount/" component={CreateAccount} />
+                <Route path="/login/" component={Login} />
                 <Route path="/deposit/" component={Deposit} />
                 <Route path="/withdraw/" component={Withdraw} />
                 {/* <Route path="/transactions/" component={Transactions} /> */}

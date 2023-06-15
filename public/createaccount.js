@@ -4,7 +4,7 @@ function CreateAccount(props){
     const ctx = React.useContext(UserContext); 
 
     function addUser() {
-        ctx.balance = '0';
+        //ctx.balance = '0';
         fetch(`/account/find/${ctx.email}`)
         .then(response => response.json())
         .then(data => {
@@ -38,7 +38,7 @@ function CreateAccount(props){
                 <>
                 {show ? 
                 <>
-                <CardForm setShow={setShow} showAmount="none"/> 
+                <CardForm setShow={setShow} /> 
                 {<button type="submit" className="btn btn-light" onClick={addUser}>Create Account</button>}
                 </>
                 : 

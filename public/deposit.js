@@ -3,7 +3,9 @@ function Deposit() {
     const [status, setStatus]     = React.useState(true);
 
     function depositAmount() {
+        console.log ("Dep: Auth? " + ctx.auth);
         if (ctx.user!=='') { 
+        console.log ("Dep: Auth? " + ctx.auth);
         setStatus(`$${ctx.balance} deposit successful!`);
         setTimeout(() => setStatus(''),2000);
 

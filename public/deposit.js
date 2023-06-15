@@ -1,6 +1,6 @@
 function Deposit() {
     const ctx = React.useContext(UserContext); 
-    const [status, setStatus]     = React.useState(true);
+    const [status, setStatus] = React.useState(true);
 
     function depositAmount() {
         console.log ("Dep: Auth? " + ctx.auth);

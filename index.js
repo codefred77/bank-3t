@@ -17,8 +17,8 @@ app.get('/account/find/:email', function (req, res) {
 });
 
 // create user account
-app.get('/account/create/:name/:email/:password/:balance', function (req, res) {
-    dal.create(req.params.name,req.params.email,req.params.password,req.params.balance).
+app.get('/account/create/:name/:email/:password/:balance/:accountnum', function (req, res) {
+    dal.create(req.params.name,req.params.email,req.params.password,req.params.balance,req.params.accountnum).
         then((user) => {
             console.log(user);
             res.send(user);            

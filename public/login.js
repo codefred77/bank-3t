@@ -4,7 +4,7 @@ function Login (props){
     const [show, setShow]         = React.useState(ctx.auth ? false : true);
     const [status, setStatus]     = React.useState(null);
 
-    function login() {
+    function handleLogin() {
       if (ctx.email!=='' && ctx.password!=='') {
         const url = `/account/login/${ctx.email}/${ctx.password}`;
         (async () => {
@@ -30,6 +30,15 @@ function Login (props){
       
     }
 
+    function handleLogout() {
+      setShow(true);
+      setCurrUser('');
+      ctx.auth=false;
+      ctx.email='';
+      ctx.password='';
+      ctx.user='';
+    }
+
     return (
         <Card
           bgcolor="primary"
@@ -43,15 +52,12 @@ function Login (props){
                 <>
                 {status}
                 <CardForm setShow={setShow} showName="none" showAmount="none"/>
-                {<button type="submit" className="btn btn-light" onClick={login}>Login</button>}
+                  {<button type="submit" className="btn btn-light" onClick={handleLogin}>Login</button>}
                 </>
             ) : (
-
                 <>    
                 <h5>You are logged in!</h5><br/>
-                <button type="submit" 
-                    className="btn btn-light" 
-                    onClick={() => {setShow(true); setCurrUser(''); ctx.auth=false; ctx.email=''; ctx.password=''; ctx.user='';}}>Logout</button>
+                <button type="submit" className="btn btn-light" onClick={handleLogout}>Logout</button>
                 </>
             )}
             </>
@@ -59,17 +65,4 @@ function Login (props){
         />
       );
       
-}
-
-function LoggedIn(props) {
-    const ctx = React.useContext(UserContext); 
-  
-    return (
-        <>    
-        <h5>You are logged in!</h5><br/>
-        <button type="submit" 
-            className="btn btn-light" 
-            onClick={() => {props.setShow(true); props.setCurrUser(''); ctx.auth=false; ctx.email=''; ctx.password=''; ctx.user='';}}>Logout</button>
-        </>
-    )
 }

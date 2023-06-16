@@ -44,26 +44,6 @@ function Withdraw() {
           setTimeout(() => setStatus(''), 3000);
         }
     }
-
-    function withdrawAmount() {
-      if (ctx.user !== '') {
-        setStatus(`$${ctx.balance} withdrawal successful!`);
-        setTimeout(() => setStatus(''), 3000);
-  
-        const url = `/account/withdraw/${ctx.email}/${ctx.balance}`;
-        fetch(url)
-          .then((res) => res.json())
-          .then((data) => {
-            console.log(data);
-          })
-          .catch((error) => {
-            console.error('Withdrawal failed:', error);
-          });
-      } else {
-        setStatus('Login to make a withdrawal');
-        setTimeout(() => setStatus(''), 3000);
-      }
-    }
   
     return (
       <Card

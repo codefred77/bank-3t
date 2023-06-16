@@ -50,7 +50,6 @@ function Login (props){
 
             {show ? (
                 <>
-                {status}
                 <CardForm setShow={setShow} showName="none" showAmount="none"/>
                   {<button type="submit" className="btn btn-light" onClick={handleLogin}>Login</button>}
                 </>

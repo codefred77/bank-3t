@@ -1,13 +1,12 @@
-# syntax=docker/dockerfile:1
-FROM node:14.17.6
-ENV NODE_ENV=production
+FROM node:14.21
 
 WORKDIR /app
 
-COPY ["package.json", "package-lock.json*", "./"]
+COPY index.js /app/index.js
+COPY dal.js /app/dal.js
+COPY package.json /app/package.json
+COPY package-lock.json /app/package-lock.json
 
-RUN npm install --production
-
-COPY . .
+RUN npm ci --production
 
 CMD [ "node", "index.js" ]

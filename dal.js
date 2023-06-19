@@ -1,6 +1,6 @@
 const MongoClient = require('mongodb').MongoClient;
-//const url         = 'mongodb+srv://clarkjoey:abadbank@clarkjoey-cluster.poocv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
-const url = 'mongodb://localhost:27017';
+//const url = 'mongodb://localhost:27017';
+const url = 'mongodb://mongo:27017';
 let db            = null;
  
 // connect to mongo
@@ -8,7 +8,8 @@ MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
     console.log("Connected successfully to db server");
 
     // connect to myproject database
-    db = client.db('badbank');
+    //db = client.db('badbank');
+    db = client.db('bank-3t-mongo-1');
 });
 
 // create user account

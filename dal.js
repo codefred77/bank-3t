@@ -1,5 +1,5 @@
 
-/* Method 1
+/* Method 1 */
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = "mongodb+srv://elbanco77:sharksurfsaladita@bank-3t.jddjwcm.mongodb.net/?retryWrites=true&w=majority";
 
@@ -25,7 +25,7 @@ async function run() {
   }
 }
 run().catch(console.dir);
-*/
+/**/
 
 /* Method 2
 const { MongoClient } = require("mongodb");
@@ -54,7 +54,7 @@ run().catch(console.dir);
 */
 
 
-
+/* Method 3
 const MongoClient = require('mongodb').MongoClient;
 const url = "mongodb+srv://elbanco77:sharksurfsaladita@bank-3t.jddjwcm.mongodb.net/?retryWrites=true&w=majority";
 //const url = 'mongodb://localhost:27017';
@@ -69,6 +69,7 @@ MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
     //db = client.db('badbank');
     db = client.db('bank-3t');
 });
+*/
 
 // create user account
 function create(name, email, password, balance, accountnum){

@@ -1,8 +1,13 @@
 {
-  "name": "bad-bank-3-tier",
+  "name": "bank-3t",
   "version": "1.0.0",
-  "description": "A bad bank app with frontend, backend, and database. My MIT Capstone project",
+  "description": "A simple bank app with frontend, backend, and database.",
   "main": "index.js",
+  
+  "engines": {
+    "node": "14.x"
+    "npm": "6.x"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\"",
     "start": "node index.js"

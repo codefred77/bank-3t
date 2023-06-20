@@ -1,5 +1,5 @@
 
-/* Method 1 */
+/* Method 1
 const { MongoClient, ServerApiVersion } = require('mongodb');
 const uri = "mongodb+srv://elbanco77:sharksurfsaladita@bank-3t.jddjwcm.mongodb.net/?retryWrites=true&w=majority";
 
@@ -25,7 +25,7 @@ async function run() {
   }
 }
 run().catch(console.dir);
-/**/
+*/
 
 /* Method 2
 const { MongoClient } = require("mongodb");
@@ -53,8 +53,34 @@ async function run() {
 run().catch(console.dir);
 */
 
+/* Method 3 -- AI */
+const { MongoClient } = require('mongodb');
+const uri = "mongodb+srv://elbanco77:sharksurfsaladita@bank-3t.jddjwcm.mongodb.net/?retryWrites=true&w=majority";
 
-/* Method 3
+async function connectToDatabase() {
+  const client = new MongoClient(uri);
+  await client.connect();
+  return client.db('bank-3t');
+}
+
+let db = null;
+
+async function initializeDatabase() {
+  try {
+    db = await connectToDatabase();
+    console.log('Connected to the database successfully!');
+  } catch (error) {
+    console.error('Failed to connect to the database:', error);
+    process.exit(1);
+  }
+}
+
+initializeDatabase();
+
+// Rest of the code...
+
+
+/* Method 4 -- original method
 const MongoClient = require('mongodb').MongoClient;
 const url = "mongodb+srv://elbanco77:sharksurfsaladita@bank-3t.jddjwcm.mongodb.net/?retryWrites=true&w=majority";
 //const url = 'mongodb://localhost:27017';

@@ -13,34 +13,7 @@ function CreateAccount(props){
 
         return formattedNumber;
     }
-    /*  
-    function addUser() {
-        //ctx.balance = '0';
-        fetch(`/account/find/${ctx.email}`)
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            if (data.length===0) ctx.user = true;
-        })
-        .then(() => {
-        if (ctx.user===true) {
-            ctx.accountnum = generateAccountNumber();
-            const url = `/account/create/${ctx.name}/${ctx.email}/${ctx.password}/${ctx.balance}`;
-            
-            (async () => {
-                var res = await fetch(url);
-                var data = await res.json();
-                console.log(data);
-            })();
-            ctx.user='';
-            setShow(false);
-        } else {
-            ctx.user='';
-            setStatus('User already exists with that email');
-            setTimeout(() => setStatus(''),3000);
-        }})
-    }
-    */
+
     async function addUser() {
         try {
           const response = await fetch(`/account/find/${ctx.email}`);
@@ -48,9 +21,10 @@ function CreateAccount(props){
           console.log(data);
       
           if (data.length === 0) {
-            ctx.user = true;
+            ctx.setUser = true;
           }
       
+          // TBD - is ctx.user really needed? Just use data.length as above
           if (ctx.user === true) {
             ctx.accountnum = generateAccountNumber();
             const url = `/account/create/${ctx.name}/${ctx.email}/${ctx.password}/${ctx.balance}/${ctx.accountnum}`;
@@ -58,10 +32,10 @@ function CreateAccount(props){
             const createdData = await res.json();
             console.log(createdData);
       
-            ctx.user = '';
+            ctx.setUser = false;
             setShow(false);
           } else {
-            ctx.user = '';
+            ctx.setUser = false;
             setStatus('User already exists with that email');
             setTimeout(() => setStatus(''), 3000);
           }
@@ -70,7 +44,6 @@ function CreateAccount(props){
         }
       }
       
-
     return (
         <Card
             bgcolor="primary"
@@ -80,12 +53,22 @@ function CreateAccount(props){
             body={
                 <>
                 {show ? 
-                <>
-                <CardForm setShow={setShow} /> 
-                {<button type="submit" className="btn btn-light" onClick={addUser}>Create Account</button>}
-                </>
+                    <>
+                    <CardForm 
+                        setShow={setShow}
+                        showAcctType="none"
+                    /> 
+                    {<button 
+                        type="submit"
+                        className="btn btn-light"
+                        onClick={addUser}
+                     >
+                        Create Account
+                     </button>
+                    }
+                    </>
                 : 
-                <Success setShow={setShow}/>}
+                    <Success setShow={setShow}/>}
                 </>
             }
         />      

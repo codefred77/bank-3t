@@ -1,8 +1,7 @@
 function Login (props){
     const ctx = React.useContext(UserContext); 
-    const [currUser, setCurrUser] = React.useState('');
-    const [show, setShow]         = React.useState(ctx.auth ? false : true);
-    const [status, setStatus]     = React.useState(null);
+    const [show, setShow] = React.useState(ctx.auth ? false : true);
+    const [status, setStatus] = React.useState(null);
 
     function handleLogin() {
       if (ctx.email!=='' && ctx.password!=='') {
@@ -12,10 +11,11 @@ function Login (props){
             var data = await res.json();
             console.log(data);
             if (data.length!==0) {
-              ctx.auth=true;
+              //ctx.auth=true;
+              ctx.setAuth (true);
               console.log('Logged in! ' + ctx.email);
-              setCurrUser(ctx.email);
-              ctx.user = ctx.email;
+              //ctx.user = ctx.email;
+              //ctx.setUser = ctx.email;
               setShow(false);
             } else {
               setStatus('Login failed: Enter a valid username and password');
@@ -32,17 +32,23 @@ function Login (props){
 
     function handleLogout() {
       setShow(true);
-      setCurrUser('');
-      ctx.auth=false;
-      ctx.email='';
-      ctx.password='';
-      ctx.user='';
+      //ctx.auth=false;
+      //ctx.email='';
+      //ctx.password='';
+      //ctx.user='';
+      ctx.setAuth(false);
+      ctx.setUser(false);
+      ctx.setName('');
+      ctx.setEmail('');
+      ctx.setPassword('');
+      ctx.setBalance('0');
+      ctx.setAccountNum('0000000000')
     }
 
     return (
         <Card
           bgcolor="primary"
-          header="Customer Login"
+          header = {show ? "Customer Login" : "Customer Logout"}
           text=""
           status={status}
           body={
@@ -50,7 +56,11 @@ function Login (props){
 
             {show ? (
                 <>
-                <CardForm setShow={setShow} showName="none" showAmount="none"/>
+                <CardForm 
+                  setShow={setShow}
+                  showAcctType="none"
+                  showName="none"
+                  showAmount="none"/>
                   {<button type="submit" className="btn btn-light" onClick={handleLogin}>Login</button>}
                 </>
             ) : (

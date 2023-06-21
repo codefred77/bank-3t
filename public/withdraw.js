@@ -5,7 +5,8 @@ function Withdraw() {
     async function handleWithdrawal() {
 
         // The user is logged in; proceed with the deposit
-        if (ctx.user) {
+        //if (ctx.user) {
+        if (ctx.auth) {
           console.log ("Whitdraw:" + ctx.balance);
           // Check that the withdraw amount is valid
           if (ctx.balance < 0 || ctx.balance === null) {
@@ -21,7 +22,7 @@ function Withdraw() {
           }
 
           try {
-            const response = await fetch(`/account/withdraw/${ctx.user}/${ctx.balance}`);
+            const response = await fetch(`/account/withdraw/${ctx.email}/${ctx.balance}`);
             const data = await response.json();
             console.log(data);
     
@@ -54,6 +55,7 @@ function Withdraw() {
         body={
           <>
             <CardForm
+              showAcctType="none"
               showName="none"
               showPassword="none"
               showEmail="none"

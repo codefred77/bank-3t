@@ -16,7 +16,7 @@ app.get('/account/find/:email', function (req, res) {
         });    
 });
 
-// create user account
+// Create user account
 app.get('/account/create/:name/:email/:password/:balance/:accountnum', function (req, res) {
     dal.create(req.params.name,req.params.email,req.params.password,req.params.balance,req.params.accountnum).
         then((user) => {
@@ -25,7 +25,7 @@ app.get('/account/create/:name/:email/:password/:balance/:accountnum', function 
         });    
 });
 
-// deposit into user account
+// Deposit
 app.get('/account/deposit/:email/:balance', function (req, res) {
     dal.deposit(req.params.email,req.params.balance).
         then((user) => {
@@ -34,7 +34,7 @@ app.get('/account/deposit/:email/:balance', function (req, res) {
         });    
 });
 
-// withdraw from user account
+// Withdrawal
 app.get('/account/withdraw/:email/:balance', function (req, res) {
     dal.withdraw(req.params.email,req.params.balance).
         then((user) => {
@@ -43,7 +43,7 @@ app.get('/account/withdraw/:email/:balance', function (req, res) {
         });    
 });
 
-// user login 
+// Login
 app.get('/account/login/:email/:password', function (req, res) {
     dal.login(req.params.email,req.params.password).
         then((user) => {
@@ -52,7 +52,7 @@ app.get('/account/login/:email/:password', function (req, res) {
         });    
 });
 
-// user account balance
+// Balance
 app.get('/account/balance/:email', function (req, res) {
     dal.balance(req.params.email).
         then((user) => {
@@ -61,7 +61,7 @@ app.get('/account/balance/:email', function (req, res) {
         });    
 });
 
-// all accounts
+// All accounts
 app.get('/account/all', function (req, res) {
 
     dal.all().

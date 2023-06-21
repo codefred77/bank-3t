@@ -20,6 +20,7 @@ function AllData() {
             status=""
             body={
                 <CardForm
+                    showAcctType="none"
                     showName="none"
                     showEmail="none"
                     showPassword="none"

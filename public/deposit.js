@@ -5,7 +5,8 @@ function Deposit() {
     async function handleDeposit() {
 
       // The user is logged in; proceed with the deposit
-      if (ctx.user) {
+      //if (ctx.user) {
+      if (ctx.auth) {
         console.log ("Deposit:" + ctx.balance);
         // Check that the deposit amount is valid
         if (ctx.balance < 0 || ctx.balance === null) {
@@ -21,7 +22,7 @@ function Deposit() {
         }
 
         try {
-          const response = await fetch(`/account/deposit/${ctx.user}/${ctx.balance}`);
+          const response = await fetch(`/account/deposit/${ctx.email}/${ctx.balance}`);
           const data = await response.json();
           console.log(data);
   
@@ -55,6 +56,7 @@ function Deposit() {
         body={
           <>
             <CardForm 
+                showAcctType="none"
                 showName="none" 
                 showPassword="none" 
                 showEmail="none" />

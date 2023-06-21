@@ -38,7 +38,7 @@ MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
 });
 */
 
-// create user account
+// Create user account
 function create(name, email, password, balance, accountnum){
     return new Promise((resolve, reject) => {    
         const collection = db.collection('users');
@@ -50,7 +50,7 @@ function create(name, email, password, balance, accountnum){
     })
 }
 
-// deposit into database
+// Deposit into database
 function deposit(email, balance) {
     return new Promise((resolve, reject) => {
         const collection = db.collection('users');        
@@ -63,7 +63,7 @@ function deposit(email, balance) {
     });   
 }
 
-// withdraw from database
+// Withdraw from database
 function withdraw(email, balance) {
     return new Promise((resolve, reject) => {
         const collection = db.collection('users');        
@@ -76,7 +76,7 @@ function withdraw(email, balance) {
     });   
 }
 
-// find user account balance
+// Find user account balance
 function balance(email) {
     return new Promise((resolve, reject) => {
         const collection = db.collection('users');        
@@ -87,7 +87,7 @@ function balance(email) {
     });   
 }
 
-// find user with given email and password, returns an empty array if doesn't exist
+// Find user with given email and password, returns an empty array if doesn't exist
 function login(email, password) {
     return new Promise((resolve, reject) => {
         const collection = db.collection('users');        
@@ -103,7 +103,7 @@ function login(email, password) {
     });   
 }
 
-// find user account
+// Find user account
 function find(email){
     return new Promise((resolve, reject) => {    
         const customers = db
@@ -115,7 +115,7 @@ function find(email){
     })
 }
 
-// all users
+// All users
 function all(){
     return new Promise((resolve, reject) => {    
         const customers = db

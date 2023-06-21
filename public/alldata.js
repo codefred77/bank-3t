@@ -23,6 +23,7 @@ function AllData() {
                     showAcctType="none"
                     showName="none"
                     showEmail="none"
+                    showXfrEmail="none"
                     showPassword="none"
                     showAmount="none"
                     buttonType="button"

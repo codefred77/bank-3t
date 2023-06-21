@@ -34,6 +34,7 @@ function CardForm(props) {
   const ctx = React.useContext(UserContext);
   const [name, setName] = React.useState('');
   const [email, setEmail] = React.useState('');
+  const [xfremail, setXfrEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [balance, setBalance] = React.useState('');
   const [selectedAccounts, setSelectedAccounts] = React.useState([]);
@@ -46,6 +47,11 @@ function CardForm(props) {
   const handleEmailChange = (e) => {
     setEmail(e.currentTarget.value);
     ctx.setEmail(e.currentTarget.value);
+  };
+
+  const handleXfrEmailChange = (e) => {
+    setXfrEmail(e.currentTarget.value);
+    ctx.setXfrEmail(e.currentTarget.value);
   };
 
   const handlePasswordChange = (e) => {
@@ -136,6 +142,18 @@ function CardForm(props) {
             placeholder="Enter email"
             value={email}
             onChange={handleEmailChange}
+          />
+          <br />
+        </div>
+
+        <div className="email-field" style={{ display: props.showXfrEmail }}>
+          Recipient's email address<br />
+          <input
+            type="input"
+            className="form-control"
+            placeholder="Enter recepient's email"
+            value={xfremail}
+            onChange={handleXfrEmailChange}
           />
           <br />
         </div>

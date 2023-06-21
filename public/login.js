@@ -60,6 +60,7 @@ function Login (props){
                   setShow={setShow}
                   showAcctType="none"
                   showName="none"
+                  showXfrEmail="none"
                   showAmount="none"/>
                   {<button type="submit" className="btn btn-light" onClick={handleLogin}>Login</button>}
                 </>

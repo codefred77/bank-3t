@@ -57,8 +57,9 @@ function Withdraw() {
             <CardForm
               showAcctType="none"
               showName="none"
-              showPassword="none"
               showEmail="none"
+              showXfrEmail="none"
+              showPassword="none"
               handleBalanceChange={(e) => (ctx.balance = e.currentTarget.value)}
             />
             <button type="button" className="btn btn-light" onClick={handleWithdrawal}>

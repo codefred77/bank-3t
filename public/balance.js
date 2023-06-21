@@ -35,7 +35,8 @@ function Balance() {
                     showName="none"
                     showPassword="none"
                     showAmount="none"
-                    showEmail="none"              
+                    showEmail="none"
+                    showXfrEmail="none"             
                 />
             }
         />

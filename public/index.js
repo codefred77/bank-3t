@@ -3,6 +3,7 @@ function Spa() {
     const [authValue, setAuthValue] = React.useState(false);
     const [nameValue, setNameValue] = React.useState('');
     const [emailValue, setEmailValue] = React.useState('');
+    const [xfremailValue, setXfrEmailValue] = React.useState('');
     const [passwordValue, setPasswordValue] = React.useState('');
     const [balanceValue, setBalanceValue] = React.useState('0');
     const [accountNumValue, setAccountNumValue] = React.useState('0600000000');
@@ -18,6 +19,7 @@ function Spa() {
                 auth: authValue,
                 name: nameValue,
                 email: emailValue,
+                xfremail: xfremailValue,
                 password: passwordValue,
                 balance: balanceValue,
                 accountnum: accountNumValue,
@@ -26,6 +28,7 @@ function Spa() {
                 setAuth: setAuthValue,
                 setName: setNameValue,
                 setEmail: setEmailValue,
+                setXfrEmail: setXfrEmailValue,
                 setPassword: setPasswordValue,
                 setBalance: setBalanceValue,
                 setAccountNum: setAccountNumValue
@@ -40,6 +43,7 @@ function Spa() {
                     <Route path="/login/"         component={Login} />
                     <Route path="/deposit/"       component={Deposit} />
                     <Route path="/withdraw/"      component={Withdraw} />
+                    <Route path="/transfer/"      component={Transfer} />
                     <Route path="/balance/"       component={Balance} />
                     <Route path="/alldata/"       component={AllData} />
                 </div>

@@ -1,5 +1,6 @@
 function Deposit() {
     const ctx = React.useContext(UserContext);
+    const [show, setShow] = React.useState(true);
     const [status, setStatus] = React.useState('');
   
     async function handleDeposit() {
@@ -7,28 +8,28 @@ function Deposit() {
       // The user is logged in; proceed with the deposit
       //if (ctx.user) {
       if (ctx.auth) {
-        console.log ("Deposit:" + ctx.balance);
+        console.log ("Deposit:" + ctx.cbal);
         // Check that the deposit amount is valid
-        if (ctx.balance < 0 || ctx.balance === null) {
+        if (ctx.cbal < 0 || ctx.cbal === null) {
             setStatus ("Please enter positive numbers only");
             setTimeout(() => setStatus(''), 3000);
             return;
         }
         // TBD - probably not needed since the form input type is 'number'
-        if (isNaN(ctx.balance)) {
+        if (isNaN(ctx.cbal)) {
             setStatus ("Please enter numerical values only");
             setTimeout(() => setStatus(''), 3000);
             return;
         }
 
         try {
-          const response = await fetch(`/account/deposit/${ctx.email}/${ctx.balance}`);
+          const response = await fetch(`/account/deposit/${ctx.email}/${ctx.cbal}`);
           const data = await response.json();
           console.log(data);
   
           if (response.ok) {
-            setStatus(`$${ctx.balance} deposit successful!`);
-            setTimeout(() => setStatus(''), 3000);
+            setStatus('');
+            setShow(false);
           } else {
             setStatus('Deposit failed. Please try again.');
             setTimeout(() => setStatus(''), 3000);
@@ -45,6 +46,11 @@ function Deposit() {
         setTimeout(() => setStatus(''), 3000);
       }
     }
+
+    
+    function handleOneMore () {
+      setShow(true);
+    }
   
     // TBD - disable submit button if empty amount?
     return (
@@ -54,20 +60,36 @@ function Deposit() {
         text=""
         status={status}
         body={
-          <>
-            <CardForm 
-                showAcctType="none"
-                showName="none" 
-                showEmail="none"
-                showXfrEmail="none"
-                showPassword="none" />
-            <button 
-                type="submit" 
-                className="btn btn-light" 
-                onClick={handleDeposit}>
+          show ? (
+            <>
+              <CardForm
+              showAcctType="none"
+              showName="none" 
+              showEmail="none"
+              showXfrEmail="none"
+              showPassword="none"
+              />
+
+              <button
+                type="submit"
+                className="btn btn-light"
+                onClick={handleDeposit}
+              >
                 Deposit
-            </button>
-          </>
+              </button>
+            </>
+          ) : (
+            <>
+              <h5>Deposit successful!</h5><br/>
+              <button 
+                type="submit"
+                className="btn btn-light"
+                onClick={handleOneMore}
+              >
+                Make another deposit
+              </button>
+            </>
+          )
         }
       />
     );

@@ -17,8 +17,8 @@ app.get('/account/find/:email', function (req, res) {
 });
 
 // Create user account
-app.get('/account/create/:name/:email/:password/:balance/:accountnum', function (req, res) {
-    dal.create(req.params.name,req.params.email,req.params.password,req.params.balance,req.params.accountnum).
+app.get('/account/create/:name/:email/:password/:cbal/:cnum', function (req, res) {
+    dal.create(req.params.name,req.params.email,req.params.password,req.params.cbal,req.params.cnum).
         then((user) => {
             console.log(user);
             res.send(user);            
@@ -26,8 +26,8 @@ app.get('/account/create/:name/:email/:password/:balance/:accountnum', function 
 });
 
 // Deposit
-app.get('/account/deposit/:email/:balance', function (req, res) {
-    dal.deposit(req.params.email,req.params.balance).
+app.get('/account/deposit/:email/:cbal', function (req, res) {
+    dal.deposit(req.params.email,req.params.cbal).
         then((user) => {
             console.log(user);
             res.send(user);            
@@ -35,8 +35,8 @@ app.get('/account/deposit/:email/:balance', function (req, res) {
 });
 
 // Withdrawal
-app.get('/account/withdraw/:email/:balance', function (req, res) {
-    dal.withdraw(req.params.email,req.params.balance).
+app.get('/account/withdraw/:email/:cbal', function (req, res) {
+    dal.withdraw(req.params.email,req.params.cbal).
         then((user) => {
             console.log(user);
             res.send(user);            

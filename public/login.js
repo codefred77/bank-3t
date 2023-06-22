@@ -41,8 +41,8 @@ function Login (props){
       ctx.setName('');
       ctx.setEmail('');
       ctx.setPassword('');
-      ctx.setBalance('0');
-      ctx.setAccountNum('0000000000')
+      ctx.setCBal('0');
+      ctx.setCNum('0000000000')
     }
 
     return (

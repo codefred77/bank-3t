@@ -5,8 +5,8 @@ function Spa() {
     const [emailValue, setEmailValue] = React.useState('');
     const [xfremailValue, setXfrEmailValue] = React.useState('');
     const [passwordValue, setPasswordValue] = React.useState('');
-    const [balanceValue, setBalanceValue] = React.useState('0');
-    const [accountNumValue, setAccountNumValue] = React.useState('0600000000');
+    const [cBalValue, setCBalValue] = React.useState('0');
+    const [cNumValue, setCNumValue] = React.useState('0600000000');
 
     return (
         <>
@@ -21,8 +21,8 @@ function Spa() {
                 email: emailValue,
                 xfremail: xfremailValue,
                 password: passwordValue,
-                balance: balanceValue,
-                accountnum: accountNumValue,
+                cbal: cBalValue,
+                cnum: cNumValue,
                 // Setter functions
                 setUser: setUserValue,
                 setAuth: setAuthValue,
@@ -30,8 +30,8 @@ function Spa() {
                 setEmail: setEmailValue,
                 setXfrEmail: setXfrEmailValue,
                 setPassword: setPasswordValue,
-                setBalance: setBalanceValue,
-                setAccountNum: setAccountNumValue
+                setCBal: setCBalValue,
+                setCNum: setCNumValue
                 }}>
                 
             

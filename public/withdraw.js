@@ -1,5 +1,6 @@
 function Withdraw() {
     const ctx = React.useContext(UserContext);
+    const [show, setShow] = React.useState(true);
     const [status, setStatus] = React.useState('');
 
     async function handleWithdrawal() {
@@ -7,28 +8,28 @@ function Withdraw() {
         // The user is logged in; proceed with the deposit
         //if (ctx.user) {
         if (ctx.auth) {
-          console.log ("Whitdraw:" + ctx.balance);
+          console.log ("Whitdraw:" + ctx.cbal);
           // Check that the withdraw amount is valid
-          if (ctx.balance < 0 || ctx.balance === null) {
+          if (ctx.cbal < 0 || ctx.cbal === null) {
               setStatus ("Please enter positive numbers only");
               setTimeout(() => setStatus(''), 3000);
               return;
           }
           // TBD - probably not needed since the form input type is 'number'
-          if (isNaN(ctx.balance)) {
+          if (isNaN(ctx.cbal)) {
               setStatus ("Please enter numerical values only");
               setTimeout(() => setStatus(''), 3000);
               return;
           }
 
           try {
-            const response = await fetch(`/account/withdraw/${ctx.email}/${ctx.balance}`);
+            const response = await fetch(`/account/withdraw/${ctx.email}/${ctx.cbal}`);
             const data = await response.json();
             console.log(data);
     
             if (response.ok) {
-              setStatus(`$${ctx.balance} withdrawal successful!`);
-              setTimeout(() => setStatus(''), 3000);
+              setStatus('');
+              setShow(false);
             } else {
               setStatus('Withdrawal failed. Please try again.');
               setTimeout(() => setStatus(''), 3000);
@@ -45,6 +46,10 @@ function Withdraw() {
           setTimeout(() => setStatus(''), 3000);
         }
     }
+      
+    function handleOneMore () {
+      setShow(true);
+    }
   
     return (
       <Card
@@ -53,19 +58,36 @@ function Withdraw() {
         text=""
         status={status}
         body={
-          <>
-            <CardForm
+          show ? (
+            <>
+              <CardForm
               showAcctType="none"
               showName="none"
               showEmail="none"
               showXfrEmail="none"
               showPassword="none"
-              handleBalanceChange={(e) => (ctx.balance = e.currentTarget.value)}
-            />
-            <button type="button" className="btn btn-light" onClick={handleWithdrawal}>
-              Withdraw
-            </button>
-          </>
+              />
+
+              <button
+                type="submit"
+                className="btn btn-light"
+                onClick={handleWithdrawal}
+              >
+                Withdraw
+              </button>
+            </>
+          ) : (
+            <>
+              <h5>Withdrawal successful!</h5><br/>
+              <button 
+                type="submit"
+                className="btn btn-light"
+                onClick={handleOneMore}
+              >
+                Make another withdrawal
+              </button>
+            </>
+          )
         }
       />
     );

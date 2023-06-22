@@ -39,11 +39,11 @@ MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
 */
 
 // Create user account
-function create(name, email, password, balance, accountnum){
+function create(name, email, password, cbal, cnum){
     return new Promise((resolve, reject) => {    
         const collection = db.collection('users');
-        balance = parseInt(balance);
-        const doc = {name, email, password, balance, accountnum};
+        cbal = parseInt(cbal);
+        const doc = {name, email, password, cbal, cnum};
         collection.insertOne(doc, {w:1}, function(err, result) {
             err ? reject(err) : resolve(doc);
         });    
@@ -51,26 +51,26 @@ function create(name, email, password, balance, accountnum){
 }
 
 // Deposit into database
-function deposit(email, balance) {
+function deposit(email, cbal) {
     return new Promise((resolve, reject) => {
         const collection = db.collection('users');        
-        balance = parseInt(balance);
+        cbal = parseInt(cbal);
         collection.updateOne(
                 {"email":email}, 
-                {$inc: {"balance":balance}},
+                {$inc: {"cbal":cbal}},
                 function(err, result) {err ? reject(err) : resolve(result);}
             )
     });   
 }
 
 // Withdraw from database
-function withdraw(email, balance) {
+function withdraw(email, cbal) {
     return new Promise((resolve, reject) => {
         const collection = db.collection('users');        
-        balance = -parseInt(balance);
+        cbal = -parseInt(cbal);
         collection.updateOne(
                 {"email":email}, 
-                {$inc: {"balance":balance}},
+                {$inc: {"cbal":cbal}},
                 function(err, result) {err ? reject(err) : resolve(result);}
             )
     });   

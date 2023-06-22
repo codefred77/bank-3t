@@ -30,7 +30,7 @@ function AllData() {
               <th scope="col">Name</th>
               <th scope="col">Email</th>
               <th scope="col">Password</th>
-              <th scope="col">Account</th>
+              <th scope="col">Account Number</th>
               <th scope="col">Balance</th>
             </tr>
           </thead>

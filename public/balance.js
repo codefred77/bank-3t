@@ -1,7 +1,7 @@
 function Balance() {
     const ctx = React.useContext(UserContext); 
     const [data, setData] = React.useState('');
-    const [cAccnt, setCAccnt] = React.useState('');
+    const [cNum, setCNum] = React.useState('');
     const [cBal, setCBal] = React.useState('');
     const [status, setStatus] = React.useState(true);
 
@@ -12,8 +12,8 @@ function Balance() {
             .then(response => response.json())
             .then(data => {
                     console.log(data);
-                    setCAccnt('Checking Account (' + data[0].accountnum + ')');
-                    setCBal('Balance: $' + data[0].balance);
+                    setCNum('Checking Account (' + data[0].cnum + ')');
+                    setCBal('Balance: $' + data[0].cbal);
             });
         } else {
             setStatus('Login to see account balance');
@@ -26,7 +26,7 @@ function Balance() {
             bgcolor="info"
             header="Balance"
             text={data}
-            caccnt={cAccnt}
+            cnum={cNum}
             cbal={cBal}
             status={status}
             body={

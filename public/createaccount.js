@@ -1,41 +1,44 @@
 function CreateAccount(props){
     const [show, setShow]     = React.useState(true);
     const [status, setStatus] = React.useState('');
-
+    const [user, setUser] = React.useState(false);
     const ctx = React.useContext(UserContext); 
 
     function generateAccountNumber() {
         // Note: all checking account numbers start with "06"
         const randomNumber = Math.floor(Math.random() * 10000000000); // Generate a random 10-digit number
         const formattedNumber = `06${randomNumber.toString().padStart(8, '0')}`; // Add leading zeros if necessary
-        
+        console.log("Random acct num: " + formattedNumber);
         // TBD - check that the newly generated number does not match and existing one
 
         return formattedNumber;
     }
 
     async function addUser() {
+        let random_cnum;
+
         try {
-          const response = await fetch(`/account/find/${ctx.email}`);
-          const data = await response.json();
-          console.log(data);
+          var response = await fetch(`/account/find/${ctx.email}`);
+          var data = await response.json();
+          console.log("Does user already exist? " + data);
       
           if (data.length === 0) {
-            ctx.setUser = true;
-          }
-      
-          // TBD - is ctx.user really needed? Just use data.length as above
-          if (ctx.user === true) {
-            ctx.accountnum = generateAccountNumber();
-            const url = `/account/create/${ctx.name}/${ctx.email}/${ctx.password}/${ctx.balance}/${ctx.accountnum}`;
+            setUser(true);
+            ctx.setUser(true);
+
+            random_cnum = generateAccountNumber();
+            ctx.setCNum(random_cnum);
+
+            const url = `/account/create/${ctx.name}/${ctx.email}/${ctx.password}/${ctx.cbal}/${random_cnum}`;
             const res = await fetch(url);
             const createdData = await res.json();
-            console.log(createdData);
-      
-            ctx.setUser = false;
+            
+            setUser(false);  
+            ctx.setUser(false);
             setShow(false);
           } else {
-            ctx.setUser = false;
+            setUser(false);
+            ctx.setUser(false);
             setStatus('User already exists with that email');
             setTimeout(() => setStatus(''), 3000);
           }
@@ -57,6 +60,8 @@ function CreateAccount(props){
                     <CardForm 
                         setShow={setShow}
                         showAcctType="none"
+                        showXfrEmail="none"
+                        showAmount="none"
                     /> 
                     {<button 
                         type="submit"

@@ -16,7 +16,7 @@ function Card(props) {
       <div className="card-body">
         {props.title && <h5 className="card-title">{props.title}</h5>}
         {props.text && <p className="card-text">{props.text}</p>}
-        {props.caccnt && <p className="card-text">{props.caccnt}</p>}
+        {props.cnum && <p className="card-text">{props.cnum}</p>}
         {props.cbal && <p className="card-text">{props.cbal}</p>}
         {props.status ? (
           <div id="createStatus">{props.status}</div>
@@ -36,8 +36,8 @@ function CardForm(props) {
   const [email, setEmail] = React.useState('');
   const [xfremail, setXfrEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
-  const [balance, setBalance] = React.useState('');
-  const [selectedAccounts, setSelectedAccounts] = React.useState([]);
+  const [balance, setCBal] = React.useState('');
+  const [selectedAccountType, setSelectedAccountType] = React.useState('checking');
 
   const handleNameChange = (e) => {
     setName(e.currentTarget.value);
@@ -60,64 +60,40 @@ function CardForm(props) {
   };
 
   const handleBalanceChange = (e) => {
-    setBalance(e.currentTarget.value);
-    ctx.setBalance(e.currentTarget.value);
+    setCBal(e.currentTarget.value);
+    ctx.setCBal(e.currentTarget.value);
   };
 
-  const handleAccountChange = (e) => {
-    const selectedAccount = e.currentTarget.value;
-    const isChecked = e.currentTarget.checked;
-
-    if (isChecked) {
-      setSelectedAccounts((prevSelectedAccounts) => [
-        ...prevSelectedAccounts,
-        selectedAccount,
-      ]);
-    } else {
-      setSelectedAccounts((prevSelectedAccounts) =>
-        prevSelectedAccounts.filter((account) => account !== selectedAccount)
-      );
-    }
+  const handleAccountTypeChange = (e) => {
+    setSelectedAccountType(e.currentTarget.value);
+    //ctx.setSelectedAccountType(e.currentTarget.value);
   };
-
-  /*
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Perform form submission logic here using the form data (name, email, password, balance, selectedAccounts)
-    // Use the state values (name, email, password, balance, selectedAccounts) or pass them as arguments to a function
-    // Reset the form fields if needed
-    setName('');
-    setEmail('');
-    setPassword('');
-    setBalance('');
-    setSelectedAccounts([]);
-  };
-  */
 
   return (
     <>
       <div style={{ maxWidth: '20rem' }}>
-
-      <div className="account-field" style={{ display: props.showAcctType }}>
-          Account Type (check at least one):<br />
+          
+      <div className="account-type-field">
+          Select an account:<br />
           <label>
             <input
-              type="checkbox"
-              value="savings"
-              checked={selectedAccounts.includes('savings')}
-              onChange={handleAccountChange}
-            />
-            Savings
-          </label>
-
-          <label style={{ marginLeft: '10px' }}>
-            <input
-              type="checkbox"
+              type="radio"
+              name="accountType"
               value="checking"
-              checked={selectedAccounts.includes('checking')}
-              onChange={handleAccountChange}
+              checked={selectedAccountType === 'checking'}
+              onChange={handleAccountTypeChange}
             />
             Checking
+          </label>
+          <label style={{ marginLeft: '10px' }}>
+            <input
+              type="radio"
+              name="accountType"
+              value="savings"
+              checked={selectedAccountType === 'savings'}
+              onChange={handleAccountTypeChange}
+            />
+            Savings
           </label>
         </div>
 
@@ -151,7 +127,7 @@ function CardForm(props) {
           <input
             type="input"
             className="form-control"
-            placeholder="Enter recepient's email"
+            placeholder="Enter recipient's email"
             value={xfremail}
             onChange={handleXfrEmailChange}
           />
@@ -181,8 +157,8 @@ function CardForm(props) {
           />
           <br />
         </div>
+
       </div>
     </>
   );
 }
-

@@ -1,35 +1,53 @@
 function AllData() {
-    const [data, setData] = React.useState('');
-
+    const [data, setData] = React.useState([]);
+  
     React.useEffect(() => {
-
-        // fetch all accounts from API
-        fetch('/account/all')
-            .then(response => response.json())
-            .then(data => {
-                    console.log(data);
-                    setData(JSON.stringify(data));
-            });
+      // fetch all accounts from API
+      fetch('/account/all')
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          // Format the cbal values as currency
+          const formattedData = data.map(user => ({
+            ...user,
+            cbal: parseFloat(user.cbal).toLocaleString(undefined, {
+              style: 'currency',
+              currency: 'USD',
+              minimumFractionDigits: 2,
+            }),
+          }));
+          setData(formattedData);
+        });
     }, []);
-
+  
     return (
-        <Card
-            bgcolor="secondary"
-            header="All Data"
-            text={data}
-            status=""
-            body={
-                <CardForm
-                    showAcctType="none"
-                    showName="none"
-                    showEmail="none"
-                    showXfrEmail="none"
-                    showPassword="none"
-                    showAmount="none"
-                    buttonType="button"
-                    buttonName="Show All Data"           
-                />
-            }
-        />
-    )
-}
+      <>
+        <h2>Bank Users</h2>
+  
+        <table className="table table-dark table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Password</th>
+              <th scope="col">Account</th>
+              <th scope="col">Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((user, i) => (
+              <TableRow
+                key={i}
+                name={data[i].name}
+                email={data[i].email}
+                password={data[i].password}
+                account={data[i].cnum}
+                balance={data[i].cbal}
+              />
+            ))}
+          </tbody>
+        </table>
+      </>
+    );
+  }
+  

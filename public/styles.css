@@ -1,0 +1,19 @@
+@keyframes flashAnimation {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  
+  .flash-header {
+    animation: flashAnimation 2s infinite;
+    color: hotpink;
+    font-weight: bold;
+  }
+  
+  

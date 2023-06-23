@@ -76,7 +76,7 @@ function NavBar() {
             </li>
           </ul>
           {isLoggedIn && (
-            <span className="navbar-text">{ctx.email}</span>
+            <span className="navbar-text" style={{ color: 'hotpink' }}>{ctx.email}</span>
           )}
         </div>
       </nav>

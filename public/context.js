@@ -72,8 +72,8 @@ function CardForm(props) {
   return (
     <>
       <div style={{ maxWidth: '20rem' }}>
-          
-      <div className="account-type-field">
+              
+      <div className="account-type-field" style={{ display: props.showAcctType }}>
           Select an account:<br />
           <label>
             <input

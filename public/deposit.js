@@ -45,9 +45,8 @@ function Deposit() {
         setStatus('Login to make a deposit');
         setTimeout(() => setStatus(''), 3000);
       }
-    }
+    } 
 
-    
     function handleOneMore () {
       setShow(true);
     }

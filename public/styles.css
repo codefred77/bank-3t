@@ -11,9 +11,26 @@
   }
   
   .flash-header {
-    animation: flashAnimation 2s infinite;
-    color: hotpink;
+    animation: flashAnimation 3s;
+    color: white;
     font-weight: bold;
   }
+
+  .video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+  }
+  
+  video {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  
   
   

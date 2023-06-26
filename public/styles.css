@@ -12,8 +12,9 @@
   
   .flash-header {
     animation: flashAnimation 3s;
-    color: white;
+    color: whitesmoke;
     font-weight: bold;
+    textShadow: 2px 2px 4px white;
   }
 
   .video-container {
@@ -31,6 +32,14 @@
     width: 100%;
     height: 100%;
   }
+
+  .btn-3d {
+    box-shadow: -3px 3px 0 rgba(54, 54, 54, 0.25), 0 2px 5px rgba(0, 0, 0, 0.25);
+    color: white;
+  }
+  
+  
+  
   
   
   

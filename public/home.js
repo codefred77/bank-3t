@@ -4,14 +4,21 @@ function Home() {
 
       <div className="row">
         <div className="col-md-4">
-          <h3 className="flash-header">Welcome to Ultramar Bank!</h3>
+          <h3 style={{ color: 'white', 
+                       textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' 
+                     }}>Welcome to Ultramar Bank!
+          </h3>
           <p>
             At Ultramar we strive to provide exceptional banking services tailored to your needs.
           </p>
           <img src="piggy.jpg" className="img-fluid" alt="Bank" />
         </div>
         <div className="col-md-4">
-          <h5 style={{ marginLeft: '15px', color:'white'}}>Our core values:</h5>
+          <h5 style={{ marginLeft: '15px', 
+                       color: 'white', 
+                       textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)'
+                     }}>Our core values:
+          </h5>
           <ul>
             <li>Integrity - We uphold the highest standards of integrity in all our actions and decisions.</li>
             <li>Customer Centricity - We prioritize the needs and satisfaction of our customers above all else.</li>
@@ -19,7 +26,11 @@ function Home() {
           </ul>
         </div>
         <div className="col-md-4">
-          <h5 style={{ marginLeft: '15px', color:'white' }}>Why Bank with Us?</h5>
+          <h5 style={{ marginLeft: '15px', 
+                       color: 'white', 
+                       textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)'
+                     }}>Why Bank with Us?
+          </h5>
           <ul>
             <li>Secure and reliable banking services</li>
             <li>Competitive interest rates</li>
@@ -31,18 +42,21 @@ function Home() {
       </div>
       <div className="row mt-5">
         <div className="col-md-4">
-          <a href="#/CreateAccount/" className="btn btn-info btn-lg btn-block">Create Account</a>
+          <a href="#/CreateAccount/" className="btn btn-info btn-lg btn-block btn-3d">Create Account</a>
         </div>
         <div className="col-md-4">
-          <a href="#/login/" className="btn btn-info btn-lg btn-block">Login</a>
+          <a href="#/login/" className="btn btn-info btn-lg btn-block btn-3d">Login</a>
         </div>
         <div className="col-md-4">
-          <a href="#/alldata/" className="btn btn-info btn-lg btn-block">View All Data</a>
-        </div>
+          <a href="#/alldata/" className="btn btn-info btn-lg btn-block btn-3d">View All Data</a>
+        </div>      
       </div>
       <div className="row mt-5">
         <div className="col-md-12" style={{ fontSize: '12px', color: 'white'}}>
-          <h4 style={{color:'white' }}>About Our Bank</h4>
+          <h4 style={{color:'white', 
+                      textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)'
+                     }}>About Our Bank
+          </h4>
           <p>
             Established in 1995, Our Bank has been a trusted financial institution for over two decades. 
             It all started with a vision to create a bank that would redefine the banking experience, putting 

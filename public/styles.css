@@ -14,7 +14,6 @@
     animation: flashAnimation 3s;
     color: whitesmoke;
     font-weight: bold;
-    textShadow: 2px 2px 4px white;
   }
 
   .video-container {

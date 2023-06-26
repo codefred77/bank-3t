@@ -4,21 +4,22 @@ function Home() {
 
       <div className="row">
         <div className="col-md-4">
-          <h3 style={{ color: 'white', 
+          <h3 style={{ color: 'white',
+                       fontWeight: 'bold',
                        textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' 
                      }}>Welcome to Ultramar Bank!
           </h3>
-          <p>
-            At Ultramar we strive to provide exceptional banking services tailored to your needs.
-          </p>
           <img src="piggy.jpg" className="img-fluid" alt="Bank" />
         </div>
         <div className="col-md-4">
-          <h5 style={{ marginLeft: '15px', 
-                       color: 'white', 
-                       textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)'
-                     }}>Our core values:
-          </h5>
+          <h5 style={{
+            marginLeft: '15px',
+            color: 'white',
+            fontWeight: 'bold',
+            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+            marginTop: '40px'
+          }}>Our core values:</h5>
+
           <ul>
             <li>Integrity - We uphold the highest standards of integrity in all our actions and decisions.</li>
             <li>Customer Centricity - We prioritize the needs and satisfaction of our customers above all else.</li>
@@ -26,11 +27,16 @@ function Home() {
           </ul>
         </div>
         <div className="col-md-4">
-          <h5 style={{ marginLeft: '15px', 
-                       color: 'white', 
-                       textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)'
-                     }}>Why Bank with Us?
-          </h5>
+          <h5 style={{
+            marginLeft: '15px',
+            color: 'white',
+            fontWeight: 'bold',
+            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+            marginTop: '40px'
+          }}>Why Bank with Us?</h5>
+          <p style={{ marginLeft: '15px'}}>
+            At Ultramar we strive to provide exceptional banking services tailored to your needs. We offer:
+          </p>
           <ul>
             <li>Secure and reliable banking services</li>
             <li>Competitive interest rates</li>
@@ -53,10 +59,11 @@ function Home() {
       </div>
       <div className="row mt-5">
         <div className="col-md-12" style={{ fontSize: '12px', color: 'white'}}>
-          <h4 style={{color:'white', 
-                      textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)'
-                     }}>About Our Bank
-          </h4>
+          <h5 style={{
+            color:'white',
+            fontWeight: 'bold',
+            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)'
+          }}>About Our Bank</h5>
           <p>
             Established in 1995, Our Bank has been a trusted financial institution for over two decades. 
             It all started with a vision to create a bank that would redefine the banking experience, putting 

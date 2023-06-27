@@ -55,7 +55,7 @@ function CreateAccount(props){
             status={status}
             body={
                 <>
-                {show ? 
+                {show ? (
                     <>
                     <CardForm 
                         setShow={setShow}
@@ -65,29 +65,28 @@ function CreateAccount(props){
                     /> 
                     {<button 
                         type="submit"
-                        className="btn btn-light"
+                        className="btn btn-dark"
                         onClick={addUser}
                      >
                         Create Account
                      </button>
                     }
                     </>
-                : 
-                    <Success setShow={setShow}/>}
+                ) : (
+                    <>
+                      <h5>Account created!</h5><br/>
+                      <button 
+                        type="submit"
+                        className="btn btn-dark"
+                        onClick={() => setShow(true)}
+                      >
+                        Add another account
+                      </button>
+                    </>
+                  )}
                 </>
             }
         />      
     );
-}
-
-function Success(props) {
-    return (
-        <>    
-        <h5>Success!</h5><br/>
-        <button type="submit" 
-            className="btn btn-light" 
-            onClick={() => props.setShow(true)}>Add another account</button>
-        </>
-    )
 }
   

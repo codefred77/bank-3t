@@ -1,3 +1,5 @@
+
+
 function Withdraw() {
     const ctx = React.useContext(UserContext);
     const [show, setShow] = React.useState(true);
@@ -5,16 +7,43 @@ function Withdraw() {
 
     async function handleWithdrawal() {
 
+        var curr_bal = 0;
+
+        // First get the current balance
+        try {
+          const response = await fetch(`/account/balance/${ctx.email}`);
+          const data = await response.json();
+          curr_bal = data[0].cbal;
+  
+          if (!response.ok) {
+              setStatus('Could not fetch current balance. Please try again.');
+              setTimeout(() => setStatus(''), 3000);
+          }
+          } catch (error) {
+          setStatus('Withdrawal error occurred. Please try again later.');
+          setTimeout(() => setStatus(''), 3000);
+          console.error(error);
+          }
+
         // The user is logged in; proceed with the deposit
-        //if (ctx.user) {
         if (ctx.auth) {
-          console.log ("Whitdraw:" + ctx.cbal);
+          console.log ("W cbal:" + ctx.cbal);
+          console.log ("W currBal: " + currBal);
           // Check that the withdraw amount is valid
-          if (ctx.cbal < 0 || ctx.cbal === null) {
+          if (ctx.cbal < 0 || ctx.cbal === '') {
               setStatus ("Please enter positive numbers only");
               setTimeout(() => setStatus(''), 3000);
               return;
           }
+
+          // Withdrawal amount is greater than current balance
+          if (ctx.cbal > curr_bal) {
+            console.log("Insufficient funds " + ctx.cbal + " " + currBal);
+            setStatus ("Insufficient funds");
+            setTimeout(() => setStatus(''), 3000);
+            return;
+          }
+
           // TBD - probably not needed since the form input type is 'number'
           if (isNaN(ctx.cbal)) {
               setStatus ("Please enter numerical values only");
@@ -70,7 +99,7 @@ function Withdraw() {
 
               <button
                 type="submit"
-                className="btn btn-light"
+                className="btn btn-dark"
                 onClick={handleWithdrawal}
               >
                 Withdraw
@@ -81,7 +110,7 @@ function Withdraw() {
               <h5>Withdrawal successful!</h5><br/>
               <button 
                 type="submit"
-                className="btn btn-light"
+                className="btn btn-dark"
                 onClick={handleOneMore}
               >
                 Make another withdrawal

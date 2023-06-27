@@ -71,7 +71,7 @@ function Deposit() {
 
               <button
                 type="submit"
-                className="btn btn-light"
+                className="btn btn-dark"
                 onClick={handleDeposit}
               >
                 Deposit
@@ -82,7 +82,7 @@ function Deposit() {
               <h5>Deposit successful!</h5><br/>
               <button 
                 type="submit"
-                className="btn btn-light"
+                className="btn btn-dark"
                 onClick={handleOneMore}
               >
                 Make another deposit

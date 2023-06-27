@@ -1,15 +1,42 @@
 function Transfer() {
     const ctx = React.useContext(UserContext);
     const [show, setShow] = React.useState(true);
+    const [srcBal, setSrcBal] = React.useState('');
     const [status, setStatus] = React.useState('');
   
 
     async function handleWithdrawal() {
 
+        var curr_bal = 0;  
+      
         console.log ("Transfer (pt 1 of 2):" + ctx.cbal);
+
+        // First get the current balance for the source account
+        try {
+          const response = await fetch(`/account/balance/${ctx.email}`);
+          const data = await response.json();
+          curr_bal = data[0].cbal;
+  
+          if (!response.ok) {
+              setStatus('Could not fetch current balance. Please try again.');
+              setTimeout(() => setStatus(''), 3000);
+          }
+          } catch (error) {
+          setStatus('Transfer error occurred. Please try again later.');
+          setTimeout(() => setStatus(''), 3000);
+          console.error(error);
+          }
+
+        
         // Check that the withdraw amount is valid
         if (ctx.cbal < 0 || ctx.cbal === null) {
             setStatus ("Please enter positive numbers only");
+            setTimeout(() => setStatus(''), 3000);
+            return;
+        }
+        // Source account does not have sufficient funds
+        if (ctx.cbal > curr_bal) {
+            setStatus ("Insufficient funds");
             setTimeout(() => setStatus(''), 3000);
             return;
         }
@@ -24,6 +51,7 @@ function Transfer() {
         const response = await fetch(`/account/withdraw/${ctx.email}/${ctx.cbal}`);
         const data = await response.json();
         console.log(data);
+        setSrcBal(data.cbal);
 
         if (!response.ok) {
             setStatus('Withdrawal part of transfer failed. Please try again.');
@@ -50,6 +78,7 @@ function Transfer() {
             setTimeout(() => setStatus(''), 3000);
             return;
         }
+
         // TBD - probably not needed since the form input type is 'number'
         if (isNaN(ctx.cbal)) {
             setStatus ("Please enter numerical values only");
@@ -108,7 +137,7 @@ function Transfer() {
 
               <button
                 type="submit"
-                className="btn btn-light"
+                className="btn btn-dark"
                 onClick={handleTransfer}
               >
                 Transfer
@@ -117,7 +146,13 @@ function Transfer() {
           ) : (
             <>
               <h5>Transfer successful!</h5><br/>
-              <button type="submit" className="btn btn-light" onClick={handleOneMore}>Make another transfer</button>
+              <button
+                type="submit"
+                className="btn btn-dark"
+                onClick={handleOneMore}
+              >
+                Make another transfer
+              </button>
             </>
           )
         }

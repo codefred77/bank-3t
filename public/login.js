@@ -30,12 +30,27 @@ function Login (props){
       
     }
 
+    function handleGoogleLogin() {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then((result) => {
+          // Handle successful authentication
+          console.log(result.user);
+          ctx.setAuth(true);
+          setShow(false);
+        })
+        .catch((error) => {
+          // Handle authentication error
+          console.log(error);
+          setStatus('Google sign-in failed');
+          setTimeout(() => setStatus(null), 3000);
+        });
+    }
+
     function handleLogout() {
       setShow(true);
-      //ctx.auth=false;
-      //ctx.email='';
-      //ctx.password='';
-      //ctx.user='';
       ctx.setAuth(false);
       ctx.setUser(false);
       ctx.setName('');
@@ -45,7 +60,7 @@ function Login (props){
       ctx.setCNum('0000000000')
     }
 
-    return (
+      return (
         <Card
           bgcolor="primary"
           header = {show ? "Customer Login" : "Customer Logout"}
@@ -53,23 +68,44 @@ function Login (props){
           status={status}
           body={
             <>
-
-            {show ? (
+              {show ? (
                 <>
-                <CardForm 
-                  setShow={setShow}
-                  showAcctType="none"
-                  showName="none"
-                  showXfrEmail="none"
-                  showAmount="none"/>
-                  {<button type="submit" className="btn btn-light" onClick={handleLogin}>Login</button>}
+                  <CardForm
+                    setShow={setShow}
+                    showAcctType="none"
+                    showName="none"
+                    showXfrEmail="none"
+                    showAmount="none"
+                  />
+                  <button
+                    type="submit"
+                    className="btn btn-dark"
+                    onClick={handleLogin}
+                  >
+                    Login
+                  </button>
+                  <button
+                    type="submit"
+                    className="btn btn-dark"
+                    onClick={handleGoogleLogin}
+                    style={{marginLeft: '15px'}}
+                  >
+                    Sign in with Google
+                  </button>
                 </>
-            ) : (
-                <>    
-                <h5>You are logged in!</h5><br/>
-                <button type="submit" className="btn btn-light" onClick={handleLogout}>Logout</button>
+              ) : (
+                <>
+                  <h5>You are logged in!</h5>
+                  <br />
+                  <button
+                    type="submit"
+                    className="btn btn-dark"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </button>
                 </>
-            )}
+              )}
             </>
           }
         />

@@ -27,8 +27,6 @@ function Withdraw() {
 
         // The user is logged in; proceed with the deposit
         if (ctx.auth) {
-          console.log ("W cbal:" + ctx.cbal);
-          console.log ("W currBal: " + currBal);
           // Check that the withdraw amount is valid
           if (ctx.cbal < 0 || ctx.cbal === '') {
               setStatus ("Please enter positive numbers only");
@@ -38,7 +36,6 @@ function Withdraw() {
 
           // Withdrawal amount is greater than current balance
           if (ctx.cbal > curr_bal) {
-            console.log("Insufficient funds " + ctx.cbal + " " + currBal);
             setStatus ("Insufficient funds");
             setTimeout(() => setStatus(''), 3000);
             return;

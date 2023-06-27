@@ -22,7 +22,11 @@ function AllData() {
   
     return (
       <>
-        <h2>Bank Users</h2>
+        <h3 style={{
+            color:'white',
+            fontWeight: 'bold',
+            textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)'
+          }}>Bank Users</h3>
   
         <table className="table table-dark table-striped">
           <thead>

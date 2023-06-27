@@ -1,10 +1,6 @@
-const Route = ReactRouterDOM.Route;
-const Link = ReactRouterDOM.Link;
-const HashRouter = ReactRouterDOM.HashRouter;
-const UserContext = React.createContext(null);
 
 function TableRow(props) {
-  console.log (`Rendering Row ${props.key}`);
+  //console.log (`Rendering Row ${props.key}`);
 
   return (
     <tr>
@@ -136,7 +132,7 @@ function CardForm(props) {
           <br />
         </div>
 
-        <div className="email-field" style={{ display: props.showXfrEmail }}>
+        <div className="xfremail-field" style={{ display: props.showXfrEmail }}>
           Recipient's email address<br />
           <input
             type="input"

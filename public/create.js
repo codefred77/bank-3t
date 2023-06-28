@@ -20,15 +20,13 @@ function CreateAccount(props){
         try {
           var response = await fetch(`/account/find/${ctx.email}`);
           var data = await response.json();
-          console.log("Does user already exist? " + data);
       
           if (data.length === 0) {
             setUser(true);
             ctx.setUser(true);
-
-            random_cnum = generateAccountNumber();
             ctx.setCNum(random_cnum);
-
+            random_cnum = generateAccountNumber();
+                        
             const url = `/account/create/${ctx.name}/${ctx.email}/${ctx.password}/${ctx.cbal}/${random_cnum}`;
             const res = await fetch(url);
             const createdData = await res.json();

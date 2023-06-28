@@ -42,22 +42,56 @@ MongoClient.connect(url, {useUnifiedTopology: true}, function(err, client) {
 function create(name, email, password, cbal, cnum){
     return new Promise((resolve, reject) => {    
         const collection = db.collection('users');
-        cbal = parseInt(cbal);
+        cbal = parseFloat(cbal);
         const doc = {name, email, password, cbal, cnum};
         collection.insertOne(doc, {w:1}, function(err, result) {
             err ? reject(err) : resolve(doc);
         });    
     })
 }
-
+function createnew(name, email, password, cbal, cnum, sbal, snum){
+    return new Promise((resolve, reject) => {    
+        const collection = db.collection('users');
+        cbal = parseFloat(cbal);
+        sbal = parseFloat(sbal);
+        const doc = {name, email, password, cbal, cnum, sbal, snum};
+        collection.insertOne(doc, {w:1}, function(err, result) {
+            err ? reject(err) : resolve(doc);
+        });    
+    })
+}
 // Deposit into database
 function deposit(email, cbal) {
     return new Promise((resolve, reject) => {
+      const collection = db.collection('users');
+      cbal = parseFloat(cbal);
+      collection.updateOne(
+        { "email": email },
+        { $inc: { "cbal": cbal } },
+        function(err, result) {
+          err ? reject(err) : resolve(result);
+        }
+      );
+    });
+  }
+  
+function cdeposit(email, cbal) {
+    return new Promise((resolve, reject) => {
         const collection = db.collection('users');        
-        cbal = parseInt(cbal);
+        cbal = parseFloat(cbal);
         collection.updateOne(
                 {"email":email}, 
                 {$inc: {"cbal":cbal}},
+                function(err, result) {err ? reject(err) : resolve(result);}
+            )
+    });   
+}function sdeposit(email, sbal) {
+    return new Promise((resolve, reject) => {
+        const collection = db.collection('users');        
+        cbal = parseFloat(sbal);
+        collection.updateOne(
+                {"email":email}, 
+                {$inc: {"sbal":sbal}},
                 function(err, result) {err ? reject(err) : resolve(result);}
             )
     });   
@@ -67,7 +101,7 @@ function deposit(email, cbal) {
 function withdraw(email, cbal) {
     return new Promise((resolve, reject) => {
         const collection = db.collection('users');        
-        cbal = -parseInt(cbal);
+        cbal = -parseFloat(cbal);
         collection.updateOne(
                 {"email":email}, 
                 {$inc: {"cbal":cbal}},
@@ -75,7 +109,28 @@ function withdraw(email, cbal) {
             )
     });   
 }
-
+function cwithdraw(email, cbal) {
+    return new Promise((resolve, reject) => {
+        const collection = db.collection('users');        
+        cbal = -parseFloat(cbal);
+        collection.updateOne(
+                {"email":email}, 
+                {$inc: {"cbal":cbal}},
+                function(err, result) {err ? reject(err) : resolve(result);}
+            )
+    });   
+}
+function swithdraw(email, sbal) {
+    return new Promise((resolve, reject) => {
+        const collection = db.collection('users');        
+        sbal = -parseFloat(sbal);
+        collection.updateOne(
+                {"email":email}, 
+                {$inc: {"sbal":sbal}},
+                function(err, result) {err ? reject(err) : resolve(result);}
+            )
+    });   
+}
 // Find user account balance
 function balance(email) {
     return new Promise((resolve, reject) => {
@@ -128,4 +183,4 @@ function all(){
 }
 
 
-module.exports = {create, all, deposit, withdraw, balance, login, find};
+module.exports = {create, createnew, all, deposit, cdeposit, sdeposit, withdraw, cwithdraw, swithdraw, balance, login, find};

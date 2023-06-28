@@ -48,6 +48,29 @@
             crossorigin="anonymous">
     </script>  
 
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth.js"></script>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.23.0/firebase-app.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      const firebaseConfig = {
+        apiKey: "ReplaceWithRealAPIKey",
+        authDomain: "gauth-714.firebaseapp.com",
+        projectId: "gauth-714",
+        storageBucket: "gauth-714.appspot.com",
+        messagingSenderId: "632673277868",
+        appId: "1:632673277868:web:e2fde4d047af56f2130c09"
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+    </script>
+
     <!-- load react -->
     <script src="https://unpkg.com/react/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom/umd/react-dom.development.js" crossorigin></script>

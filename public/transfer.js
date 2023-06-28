@@ -82,7 +82,7 @@ function Transfer() {
         // Handle the case where the source user is not valid
         const isValidDstUser = await validateDstUser();
         if (!isValidDstUser) {
-          setStatus ("Invalid recepient email address");
+          setStatus ("Invalid recipient email address");
           setTimeout(() => setStatus(''), 3000);
           return;
         }

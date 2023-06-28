@@ -1,7 +1,29 @@
+
 function Login (props){
     const ctx = React.useContext(UserContext); 
     const [show, setShow] = React.useState(ctx.auth ? false : true);
     const [status, setStatus] = React.useState(null);
+    
+    /****************************************************************
+    const { initializeApp } = require("firebase-app");
+
+    // Import the functions you need from the SDKs you need
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyBGEcz9e7yzBF-kE3DkZ4yBCbSYSaCwoBM",
+      authDomain: "gauth-714.firebaseapp.com",
+      projectId: "gauth-714",
+      storageBucket: "gauth-714.appspot.com",
+      messagingSenderId: "632673277868",
+      appId: "1:632673277868:web:e2fde4d047af56f2130c09"
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    ****************************************************************/
 
     function handleLogin() {
       if (ctx.email!=='' && ctx.password!=='') {
@@ -11,11 +33,8 @@ function Login (props){
             var data = await res.json();
             console.log(data);
             if (data.length!==0) {
-              //ctx.auth=true;
               ctx.setAuth (true);
               console.log('Logged in! ' + ctx.email);
-              //ctx.user = ctx.email;
-              //ctx.setUser = ctx.email;
               setShow(false);
             } else {
               setStatus('Login failed: Enter a valid username and password');

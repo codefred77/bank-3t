@@ -9,7 +9,7 @@ function Home() {
                        textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' 
                      }}>Welcome to Ultramar Bank!
           </h3>
-          <img src="piggy.jpg" className="img-fluid" alt="Bank" />
+          <img src="piggy.jpg" className="img-fluid shadow" alt="Bank" />
         </div>
         <div className="col-md-4">
           <h5 style={{
@@ -20,7 +20,7 @@ function Home() {
             marginTop: '40px'
           }}>Our core values:</h5>
 
-          <ul>
+          <ul style={{color:'white', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)'}}>
             <li>Integrity - We uphold the highest standards of integrity in all our actions and decisions.</li>
             <li>Customer Centricity - We prioritize the needs and satisfaction of our customers above all else.</li>
             <li>Innovation - We continuously seek innovative solutions to provide the best banking experience.</li>
@@ -34,10 +34,10 @@ function Home() {
             textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
             marginTop: '40px'
           }}>Why Bank with Us?</h5>
-          <p style={{ marginLeft: '15px'}}>
+          <p style={{ marginLeft: '15px', color:'white', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)'}}>
             At Ultramar we strive to provide exceptional banking services tailored to your needs. We offer:
           </p>
-          <ul>
+          <ul style={{color:'white', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)'}}>
             <li>Secure and reliable banking services</li>
             <li>Competitive interest rates</li>
             <li>Flexible account options</li>
@@ -58,7 +58,7 @@ function Home() {
         </div>      
       </div>
       <div className="row mt-5">
-        <div className="col-md-12" style={{ fontSize: '12px', color: 'white'}}>
+        <div className="col-md-12" style={{ fontSize: '12px', color: 'white', textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)'}}>
           <h5 style={{
             color:'white',
             fontWeight: 'bold',

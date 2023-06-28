@@ -4,7 +4,7 @@
   "description": "A simple bank app with frontend, backend, and database.",
   "main": "index.js",
   "author": "fredonred@gmail.com",
-  "license": "MIT",  
+  "license": "MIT",
   "engines": {
     "node": "14.x",
     "npm": "6.x"
@@ -16,6 +16,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "firebase": "^9.23.0",
     "mongodb": "^4.1.2",
     "nodemon": "^2.0.22"
   }

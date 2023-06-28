@@ -6,7 +6,7 @@ function AllData() {
       fetch('/account/all')
         .then(response => response.json())
         .then(data => {
-          console.log(data);
+          console.log("Users DB: ", data);
           // Format the cbal values as currency
           const formattedData = data.map(user => ({
             ...user,

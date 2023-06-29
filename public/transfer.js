@@ -78,7 +78,7 @@ function Transfer() {
     
     async function handleTransfer() {
       // The user is logged in; proceed with the deposit
-      if (ctx.auth) {
+      if (ctx.user) {
         // Handle the case where the source user is not valid
         const isValidDstUser = await validateDstUser();
         if (!isValidDstUser) {

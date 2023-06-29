@@ -5,7 +5,7 @@ function Spa() {
     const [emailValue, setEmailValue] = React.useState('');
     const [xfremailValue, setXfrEmailValue] = React.useState('');
     const [passwordValue, setPasswordValue] = React.useState('');
-    const [cBalValue, setCBalValue] = React.useState('0');
+    const [cBalValue, setCBalValue] = React.useState(0.0);
     const [cNumValue, setCNumValue] = React.useState('0600000000');
 
     return (

@@ -1,15 +1,15 @@
 
 function Login (props){
     const ctx = React.useContext(UserContext); 
-    const [show, setShow] = React.useState(ctx.auth ? false : true);
+    const [show, setShow] = React.useState(true);
     const [status, setStatus] = React.useState(null);
+  
+    React.useEffect(() => {
+      setShow(!ctx.user);
+    }, [ctx.user]);
     
     /****************************************************************
     const { initializeApp } = require("firebase-app");
-
-    // Import the functions you need from the SDKs you need
-    // TODO: Add SDKs for Firebase products that you want to use
-    // https://firebase.google.com/docs/web/setup#available-libraries
 
     // Your web app's Firebase configuration
     const firebaseConfig = {
@@ -31,11 +31,15 @@ function Login (props){
         (async () => {
             var res = await fetch(url);
             var data = await res.json();
-            console.log(data);
+            console.log("Login component - data: ", data);
             if (data.length!==0) {
-              ctx.setAuth (true);
-              console.log('Logged in! ' + ctx.email);
-              setShow(false);
+              ctx.setUser (true);
+              console.log("Logged in!", ctx.email);
+              if (data[0].admin) {
+                ctx.setAuth(true);
+                console.log("User is admin");
+              }
+              console.log("Context :", ctx);
             } else {
               setStatus('Login failed: Enter a valid username and password');
               setTimeout(() => setStatus(null),3000);          
@@ -49,6 +53,7 @@ function Login (props){
       
     }
 
+    /****************************************************************
     function handleGoogleLogin() {
       const provider = new firebase.auth.GoogleAuthProvider();
       firebase
@@ -57,8 +62,7 @@ function Login (props){
         .then((result) => {
           // Handle successful authentication
           console.log(result.user);
-          ctx.setAuth(true);
-          setShow(false);
+          ctx.setUser(true);
         })
         .catch((error) => {
           // Handle authentication error
@@ -66,10 +70,11 @@ function Login (props){
           setStatus('Google sign-in failed');
           setTimeout(() => setStatus(null), 3000);
         });
-    }
+    } 
+    ****************************************************************/
 
     function handleLogout() {
-      setShow(true);
+      console.log("Context :", ctx);
       ctx.setAuth(false);
       ctx.setUser(false);
       ctx.setName('');
@@ -106,7 +111,7 @@ function Login (props){
                   <button
                     type="submit"
                     className="btn btn-dark"
-                    onClick={handleGoogleLogin}
+                    onClick={handleLogin}
                     style={{marginLeft: '15px'}}
                   >
                     Sign in with Google

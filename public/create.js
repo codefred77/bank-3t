@@ -28,6 +28,7 @@ function CreateAccount(props){
             random_cnum = generateAccountNumber();
                         
             const url = `/account/create/${ctx.name}/${ctx.email}/${ctx.password}/${ctx.cbal}/${random_cnum}`;
+            console.log("Create acct URL: ", url)
             const res = await fetch(url);
             const createdData = await res.json();
             

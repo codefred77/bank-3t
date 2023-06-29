@@ -7,7 +7,7 @@ function Deposit() {
 
       // The user is logged in; proceed with the deposit
       //if (ctx.user) {
-      if (ctx.auth) {
+      if (ctx.user) {
         console.log ("Deposit:" + ctx.cbal);
         // Check that the deposit amount is valid
         if (ctx.cbal < 0 || ctx.cbal === null) {

@@ -7,7 +7,7 @@ function Balance() {
 
     React.useEffect(() => {
         //if (ctx.user!=='') { 
-        if (ctx.auth) {
+        if (ctx.user) {
             fetch(`/account/balance/${ctx.email}`)
             .then(response => response.json())
             .then(data => {

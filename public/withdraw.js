@@ -26,7 +26,7 @@ function Withdraw() {
           }
 
         // The user is logged in; proceed with the deposit
-        if (ctx.auth) {
+        if (ctx.user) {
           // Check that the withdraw amount is valid
           if (ctx.cbal < 0 || ctx.cbal === '') {
               setStatus ("Please enter positive numbers only");

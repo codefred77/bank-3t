@@ -1,13 +1,23 @@
 function NavBar() {
   const ctx = React.useContext(UserContext);
-  const [isLoggedIn, setIsLoggedIn] = React.useState(ctx.auth);
-  const [user, setUser] = React.useState('');
-
+  const [isLoggedIn, setIsLoggedIn] = React.useState(ctx.user);
   
   React.useEffect(() => {
-    setIsLoggedIn(ctx.auth);
-  }, [ctx.auth, ctx.email]);
+    setIsLoggedIn(ctx.user);
+  }, [ctx.user, ctx.admin, ctx.email]);
   
+  function handleLogout() {
+    console.log("Context :", ctx);
+    setShow(true);
+    ctx.setAuth(false);
+    ctx.setUser(false);
+    ctx.setName('');
+    ctx.setEmail('');
+    ctx.setPassword('');
+    ctx.setCBal('0');
+    ctx.setCNum('0000000000')
+  }
+
   return (
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <a className="navbar-brand" href="#">

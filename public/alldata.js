@@ -1,8 +1,13 @@
 function AllData() {
+    const ctx = React.useContext(UserContext);
     const [data, setData] = React.useState([]);
   
     React.useEffect(() => {
       // fetch all accounts from API
+      if (!ctx.auth) {
+        alert ("To view all data you must have admin privileges. Please log out and log in using the following credentials -- Email address: admin & Password: admin. Please ensure that you enter the correct email address and password to access the necessary privileges.");
+        setTimeout(() => setStatus(null),5000); 
+      }
       fetch('/account/all')
         .then(response => response.json())
         .then(data => {
@@ -44,8 +49,8 @@ function AllData() {
                 key={i}
                 name={data[i].name}
                 email={data[i].email}
-                password={data[i].password}
-                account={data[i].cnum}
+                password= {ctx.auth ? data[i].password : "Must be admin"}
+                account={ctx.auth ? data[i].cnum : "Must be admin"}
                 balance={data[i].cbal}
               />
             ))}
